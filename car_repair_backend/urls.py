@@ -9,4 +9,5 @@ urlpatterns = [
     path('blog/' ,include('blog.urls')),
     path('parts/' ,include('parts.urls')),
     path('payment/' ,include('payment.urls')),
+    path('contact/' ,include('contact.urls')),
 ]

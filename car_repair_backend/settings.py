@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'appointment',
     'blog',
     'parts',
-    'payment'
+    'payment',
+    'contact'
     
 ]
 
@@ -79,8 +80,8 @@ REST_FRAMEWORK = {
 
 
 CSRF_TRUSTED_ORIGINS = [
-    'http://127.0.0.1:8000',  # Your Django server
-    'http://127.0.0.1:5500',  # Add your frontend server here
+    'http://127.0.0.1:8000',  
+    'http://127.0.0.1:5500',  
 ]
 
 
