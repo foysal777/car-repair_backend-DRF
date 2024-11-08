@@ -45,13 +45,16 @@ There are two types of user
 - **APIs**: For potential integration with external services
 
   
-##API Documentation
+## API Documentation
 
 
 - Example API Endpoints
-- Customers: GET /api/customers/, POST /api/customers/
-- Vehicles: GET /api/vehicles/, POST /api/vehicles/
-- Appointments: GET /api/appointments/, POST /api/appointments/
+- register: GET,POST /account/register
+- login: GET account/login/
+- Appointments: appointments/
+- admin dashboard : account/admin-acess/
+- blog : blog/post/
+- delete post: blog/delete/pk
 
 
 
