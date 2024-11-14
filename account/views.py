@@ -15,7 +15,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import get_object_or_404
 from rest_framework.authtoken.models import Token
-from .serializers import RegistrationSerialization , UserDetailSerializer
+from .serializers import RegistrationSerialization , UserDetailSerializer ,UserProfileSerializer
 
 # Create your views here.
 
@@ -98,14 +98,7 @@ class UserLoginApiView(APIView):
     
 
 
-# For userdetails 
-
-# class UserDetailApiView(APIView):
-#     def get(self, request):
-#         user = request.user
-#         serializer = UserDetailSerializer(user)
-#         return Response(serializer.data)
-    
+ 
     
 class UserDetailApiView(APIView):
     def get(self, request):
@@ -147,3 +140,20 @@ class adminAcess(APIView):
            
             return Response({"is_admin": user.is_staff})
         return Response({"is_admin": False})
+    
+    
+    
+
+class EditProfileView(APIView):
+    # permission_classes = [IsAuthenticated]
+
+    def put(self, request):
+        # Get the current authenticated user
+        user = request.user
+        serializer = UserProfileSerializer(user, data=request.data, partial=True)
+        
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
