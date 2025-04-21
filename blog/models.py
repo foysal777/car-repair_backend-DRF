@@ -19,3 +19,9 @@ class Appointment(models.Model):
 
     def __str__(self):
         return f"Appointment with {self.client_name} on {self.appointment_date}"
+
+
+class Gallery(models.Model):
+    name = models.CharField(max_length=100)
+    image = models.URLField(blank= True , null=True)
+    
