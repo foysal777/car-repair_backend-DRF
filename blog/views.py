@@ -1,8 +1,8 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Post
-from .serializers import PostSerializer
+from .models import Post, Gallery
+from .serializers import PostSerializer, GallerySerializer
 from rest_framework.decorators import api_view
 
 
@@ -40,3 +40,9 @@ class TotalPostCountAPIView(APIView):
             'total_posts': total_posts
         }
         return Response(data)
+    
+class GalleryView(api_view):
+    def get(self, request):
+        gallery = Gallery.objects.all()
+        serializers = GallerySerializer(gallery, many = True)
+        return Response(serializers.data)
