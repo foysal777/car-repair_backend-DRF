@@ -35,7 +35,7 @@ def delete_post(request, post_id):
 
 class TotalPostCountAPIView(APIView):
     def get(self, request):
-        total_posts = Post.objects.count()  # Count all Post entries
+        total_posts = Post.objects.count() 
         data = {
             'total_posts': total_posts
         }
@@ -46,3 +46,10 @@ class GalleryView(api_view):
         gallery = Gallery.objects.all()
         serializers = GallerySerializer(gallery, many = True)
         return Response(serializers.data)
+    
+    def post(self, request):
+        serializers = GallerySerializer(data = request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data)
+        return Response(serializers.errors)
