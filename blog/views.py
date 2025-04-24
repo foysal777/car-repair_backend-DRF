@@ -41,15 +41,21 @@ class TotalPostCountAPIView(APIView):
         }
         return Response(data)
     
-class GalleryView(api_view):
-    def get(self, request):
-        gallery = Gallery.objects.all()
-        serializers = GallerySerializer(gallery, many = True)
+class GalleryView(APIView):
+    def get(self,request ,format = None):
+        category = request.query_params.get('category',None)
+       
+        if category:
+           images = Gallery.objects.filter(category=category)
+        
+        else:
+           images = Gallery.objects.all()
+        serializers = GallerySerializer(images, many = True , context = {'request' : request})
         return Response(serializers.data)
     
-    def post(self, request):
-        serializers = GallerySerializer(data = request.data)
+    def post(self, request , format =None ):
+        serializers = GallerySerializer(data = request.data , context= {'request' : request})
         if serializers.is_valid():
             serializers.save()
             return Response(serializers.data)
-        return Response(serializers.errors)
+        return Response(serializers.errors , status=status.HTTP_400_BAD_REQUEST)

@@ -1,6 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
+CATEGORY_CHOICES = [
+        ('Brakes', 'Brakes'),
+        ('Suspension', 'Suspension'),
+        ('Wheels', 'Wheels'),
+        ('Steering', 'Steering'),
+        ('Transmission', 'Transmission'),
+    ]
+
 class Post(models.Model):
     title = models.CharField(max_length=255)
     posted_by = models.CharField(max_length=100)
@@ -22,6 +31,12 @@ class Appointment(models.Model):
 
 
 class Gallery(models.Model):
-    name = models.CharField(max_length=100)
-    image = models.URLField(blank= True , null=True)
     
+    title = models.CharField(max_length=100)
+    category = models.CharField(max_length=40 , choices=CATEGORY_CHOICES)
+    image = models.URLField(blank= True , null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.title
+        
