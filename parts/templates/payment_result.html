@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment Result</title>
+</head>
+<body>
+  {% if result == "success" %}
+    <h2 style="color: green;">✅ Payment Successful!</h2>
+  {% elif result == "fail" %}
+    <h2 style="color: red;">❌ Payment Failed!</h2>
+  {% else %}
+    <h2 style="color: orange;">🚫 Payment Cancelled!</h2>
+  {% endif %}
+</body>
+</html>

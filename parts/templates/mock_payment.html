@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mock Payment</title>
+</head>
+<body>
+  <h2>Mock Payment Page</h2>
+  <p>Transaction ID: {{ transaction_id }}</p>
+  <a href="/mock-payment/success/{{ transaction_id }}/">✅ Success</a><br>
+  <a href="/mock-payment/fail/{{ transaction_id }}/">❌ Fail</a><br>
+  <a href="/mock-payment/cancel/{{ transaction_id }}/">🚫 Cancel</a>
+</body>
+</html>
