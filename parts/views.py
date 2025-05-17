@@ -72,3 +72,9 @@ def mock_payment_fail(request, transaction_id):
 
 def mock_payment_cancel(request, transaction_id):
     return render(request, "payment_result.html", {"result": "cancel"})
+
+
+from django.shortcuts import render
+
+def mock_payment_page(request, transaction_id):
+    return render(request, "mock_payment.html", {"transaction_id": transaction_id})
