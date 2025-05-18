@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Post, Appointment, Gallery
+from .models import Post, Appointment, Gallery , Project
 
 class PostSerializer(serializers.ModelSerializer):
 
@@ -12,3 +12,9 @@ class GallerySerializer(serializers.ModelSerializer):
     class Meta:
         model = Gallery
         fields = '__all__'
+        
+class ProjectSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Project
+        fields = '__all_'
+        
