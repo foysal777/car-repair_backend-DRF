@@ -1,8 +1,8 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Post, Gallery
-from .serializers import PostSerializer, GallerySerializer
+from .models import Post, Gallery , Project
+from .serializers import PostSerializer, GallerySerializer , ProjectSerializers
 from rest_framework.decorators import api_view
 
 
@@ -59,3 +59,17 @@ class GalleryView(APIView):
             serializers.save()
             return Response(serializers.data)
         return Response(serializers.errors , status=status.HTTP_400_BAD_REQUEST)
+    
+class ProjectAPIView(APIView):
+
+    def get(self, request):
+        projects = Project.objects.all()
+        serializer = ProjectSerializers(projects, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializer = ProjectSerializers(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)    
