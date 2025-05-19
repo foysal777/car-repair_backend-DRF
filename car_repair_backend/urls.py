@@ -10,4 +10,5 @@ urlpatterns = [
     path('parts/' ,include('parts.urls')),
     path('payment/' ,include('payment.urls')),
     path('contact/' ,include('contact.urls')),
+    path('admission/' ,include('admission.urls')),
 ]
