@@ -34,7 +34,7 @@ class Gallery(models.Model):
     
     title = models.CharField(max_length=100)
     category = models.CharField(max_length=40 , choices=CATEGORY_CHOICES)
-    image = models.URLField(blank= True , null=True)
+    image = models.URLField(blank= True , null=True , max_length=1000)
     created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
@@ -43,5 +43,5 @@ class Gallery(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=100)
-    image = models.URLField(blank=True, null= True)
+    image = models.URLField(blank=True, null= True , max_length=1000)
         
