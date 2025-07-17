@@ -14,7 +14,7 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     posted_by = models.CharField(max_length=100)
     date_posted = models.DateField()
-    main_image = models.CharField(max_length=244, default='')
+    main_image = models.CharField(max_length=944, default='')
 
     def __str__(self):
         return self.title
